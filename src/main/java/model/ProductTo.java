@@ -28,4 +28,12 @@ public class ProductTo {
         return laborCostPerSquareFoot;
     }
 
+    @Override
+    public String toString() {
+        return "\nProductTo{" +
+                "productType='" + productType + '\'' +
+                ", costPerSquareFoot=" + costPerSquareFoot +
+                ", laborCostPerSquareFoot=" + laborCostPerSquareFoot +
+                '}' + "\n";
+    }
 }

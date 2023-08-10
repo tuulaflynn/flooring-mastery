@@ -26,4 +26,13 @@ public class TaxTo {
     public BigDecimal getTaxRate() {
         return taxRate;
     }
+
+    @Override
+    public String toString() {
+        return "\nTaxTo{" +
+                "stateAbbreviation='" + stateAbbreviation + '\'' +
+                ", stateName='" + stateName + '\'' +
+                ", taxRate=" + taxRate +
+                '}' + "\n";
+    }
 }

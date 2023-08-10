@@ -2,9 +2,10 @@ package dao;
 
 import model.ProductTo;
 
-import java.util.List;
+import java.io.IOException;
+import java.util.Map;
 
 public interface ProductDao {
-    List<ProductTo> readFromProductFile(); // Each object of product is a line in the file
+    Map<String, ProductTo> readFromProductFile() throws IOException; // Each object of product is initialised from a line in the file
 
 }
