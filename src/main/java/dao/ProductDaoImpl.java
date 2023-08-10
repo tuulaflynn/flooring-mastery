@@ -3,6 +3,7 @@ package dao;
 import model.ProductTo;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.math.BigDecimal;
@@ -22,8 +23,8 @@ public class ProductDaoImpl implements ProductDao {
         // For each line in the file a productTo object is created and added as a value to the hashmap.
 
         String line;
-
-        FileReader fr = new FileReader("fileData/Data/Products.txt");
+        File productsFile = new File("fileData/Data/Products.txt");
+        FileReader fr = new FileReader(productsFile);
         BufferedReader br = new BufferedReader(fr);
 
         br.readLine();                      // Reads (ignores) the first header line in the file.

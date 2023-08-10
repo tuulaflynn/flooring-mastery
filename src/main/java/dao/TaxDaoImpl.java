@@ -1,9 +1,9 @@
 package dao;
 
-import model.ProductTo;
 import model.TaxTo;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.math.BigDecimal;
@@ -23,8 +23,8 @@ public class TaxDaoImpl implements TaxDao {
         // For each line in the file a taxTo object is created and added as a value to the hashmap.
 
         String line;
-
-        FileReader fr = new FileReader("fileData/Data/Taxes.txt");
+        File taxFile = new File("fileData/Data/Taxes.txt");
+        FileReader fr = new FileReader(taxFile);
         BufferedReader br = new BufferedReader(fr);
 
         br.readLine();                      // Reads (ignores) the first header line in the file.
