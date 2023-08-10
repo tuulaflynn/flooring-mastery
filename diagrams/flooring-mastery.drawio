@@ -1,0 +1,161 @@
+<mxfile host="app.diagrams.net" modified="2023-08-10T14:40:27.172Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36" etag="fPCkJbwzBMdDBkQNrpZ_" version="21.6.6" type="device">
+  <diagram name="Page-1" id="wyaowUpXAVMVxgWxzrrn">
+    <mxGraphModel dx="2176" dy="1396" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="_Q6uZGGRPYY9oxSEWWTm-2" value="OrderTo" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-330" y="-70" width="230" height="330" as="geometry" />
+        </mxCell>
+        <mxCell id="_Q6uZGGRPYY9oxSEWWTm-3" value="- orderNumber: Integer&lt;br&gt;- customerName: String&lt;br&gt;- area: BigDecimal&lt;br&gt;- materialCost: BigDecimal&lt;br&gt;- laborCost: BigDecimal&lt;br&gt;- tax: BigDecimal&lt;br&gt;- total: BigDecimal&lt;br&gt;&amp;nbsp;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="_Q6uZGGRPYY9oxSEWWTm-2">
+          <mxGeometry y="26" width="230" height="124" as="geometry" />
+        </mxCell>
+        <mxCell id="_Q6uZGGRPYY9oxSEWWTm-4" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="_Q6uZGGRPYY9oxSEWWTm-2">
+          <mxGeometry y="150" width="230" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="_Q6uZGGRPYY9oxSEWWTm-5" value="+ OrderTo(orderNumber, customerName, state, taxRate, productType, area, costPerSquareFoot, materialCost, labourCost, tax, total) {&lt;br&gt;orderNumber = some calc;&lt;br&gt;this.costPerSquareFoot = costPerSquareFoot;&lt;br&gt;this.materialCost =&amp;nbsp;&lt;br&gt;this.stateAbbreviation = taxTo.getStateAbbreivation()&lt;br&gt;}" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="_Q6uZGGRPYY9oxSEWWTm-2">
+          <mxGeometry y="158" width="230" height="172" as="geometry" />
+        </mxCell>
+        <mxCell id="_Q6uZGGRPYY9oxSEWWTm-8" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="_Q6uZGGRPYY9oxSEWWTm-6" target="_Q6uZGGRPYY9oxSEWWTm-9">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="410" y="390" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="_Q6uZGGRPYY9oxSEWWTm-6" value="Start" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="407.5" y="150" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="_Q6uZGGRPYY9oxSEWWTm-12" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="_Q6uZGGRPYY9oxSEWWTm-9" target="_Q6uZGGRPYY9oxSEWWTm-11">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="_Q6uZGGRPYY9oxSEWWTm-29" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="_Q6uZGGRPYY9oxSEWWTm-9" target="_Q6uZGGRPYY9oxSEWWTm-28">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="_Q6uZGGRPYY9oxSEWWTm-9" value="1. Display orders&lt;br&gt;2. Add an order&lt;br&gt;3. Edit an order&lt;br&gt;4. Remove an order&lt;br&gt;5. Export all data&lt;br&gt;&lt;br&gt;menuChoice" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="345" y="330" width="245" height="230" as="geometry" />
+        </mxCell>
+        <mxCell id="_Q6uZGGRPYY9oxSEWWTm-15" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="_Q6uZGGRPYY9oxSEWWTm-11" target="_Q6uZGGRPYY9oxSEWWTm-14">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="_Q6uZGGRPYY9oxSEWWTm-11" value="asks user for date&lt;br&gt;MMDDYYYY" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" vertex="1" parent="1">
+          <mxGeometry x="90" y="412.5" width="140" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="_Q6uZGGRPYY9oxSEWWTm-13" value="menuChoice == 1" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="230" y="415" width="120" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="_Q6uZGGRPYY9oxSEWWTm-17" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="_Q6uZGGRPYY9oxSEWWTm-14" target="_Q6uZGGRPYY9oxSEWWTm-16">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="_Q6uZGGRPYY9oxSEWWTm-21" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="_Q6uZGGRPYY9oxSEWWTm-14" target="_Q6uZGGRPYY9oxSEWWTm-20">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="_Q6uZGGRPYY9oxSEWWTm-14" value="if date exists?" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-100" y="402.5" width="110" height="85" as="geometry" />
+        </mxCell>
+        <mxCell id="_Q6uZGGRPYY9oxSEWWTm-16" value="display&lt;br&gt;fetchCollection():" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;fillColor=#33FF99;" vertex="1" parent="1">
+          <mxGeometry x="-270" y="415" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="_Q6uZGGRPYY9oxSEWWTm-18" value="Yes" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="-160" y="418" width="40" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="_Q6uZGGRPYY9oxSEWWTm-22" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="_Q6uZGGRPYY9oxSEWWTm-20">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="470" y="260" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="_Q6uZGGRPYY9oxSEWWTm-20" value="display error message" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" vertex="1" parent="1">
+          <mxGeometry x="-105" y="230" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="_Q6uZGGRPYY9oxSEWWTm-23" value="No" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="-80" y="358" width="40" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="_Q6uZGGRPYY9oxSEWWTm-24" value="OrderDao" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#66FFB3;" vertex="1" parent="1">
+          <mxGeometry x="440" y="-360" width="290" height="270" as="geometry" />
+        </mxCell>
+        <mxCell id="_Q6uZGGRPYY9oxSEWWTm-25" value="- Map&amp;lt;DateTime, List&amp;lt;OrderTo&amp;gt;&amp;gt; hashmapDateAndOrderCollections = new HashMap&amp;lt;&amp;gt;():" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="_Q6uZGGRPYY9oxSEWWTm-24">
+          <mxGeometry y="26" width="290" height="104" as="geometry" />
+        </mxCell>
+        <mxCell id="_Q6uZGGRPYY9oxSEWWTm-26" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="_Q6uZGGRPYY9oxSEWWTm-24">
+          <mxGeometry y="130" width="290" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="_Q6uZGGRPYY9oxSEWWTm-27" value="+ fetchOrderDate(DateTime): ArrayList&amp;lt;OrderTo&amp;gt;&lt;br&gt;+ fetchOrder(Orders): OrderTo" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="_Q6uZGGRPYY9oxSEWWTm-24">
+          <mxGeometry y="138" width="290" height="132" as="geometry" />
+        </mxCell>
+        <mxCell id="_Q6uZGGRPYY9oxSEWWTm-32" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="_Q6uZGGRPYY9oxSEWWTm-28" target="_Q6uZGGRPYY9oxSEWWTm-33">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="_Q6uZGGRPYY9oxSEWWTm-28" value="asks the user for:&lt;br&gt;&amp;nbsp;- order date (must be future date)&lt;br&gt;- customer name (must be non blank and charactera [a-z][0-9],.)&lt;br&gt;- state (check agaist file for valid states)&lt;br&gt;- product type (display showProductTypesAndPrices() )&lt;br&gt;- area (positive decimal &amp;gt;= 100 sq ft)" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" vertex="1" parent="1">
+          <mxGeometry x="282.5" y="640" width="370" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="_Q6uZGGRPYY9oxSEWWTm-30" value="&lt;span style=&quot;color: rgb(0, 0, 0); font-family: Helvetica; font-size: 12px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: center; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; float: none; display: inline !important;&quot;&gt;menuChoice == 2&lt;/span&gt;" style="text;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="470" y="580" width="130" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="_Q6uZGGRPYY9oxSEWWTm-36" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="_Q6uZGGRPYY9oxSEWWTm-31" target="_Q6uZGGRPYY9oxSEWWTm-35">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="_Q6uZGGRPYY9oxSEWWTm-31" value="Calculate and assign variables&lt;br&gt;- orderNumber&lt;br&gt;- taxRate&lt;br&gt;- costPerSquareFoot&lt;br&gt;- laborCostPerSquareFoot&lt;br&gt;- materialCost&lt;br&gt;- laborCost&lt;br&gt;- tax&lt;br&gt;- total" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="330" y="1270" width="230" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="_Q6uZGGRPYY9oxSEWWTm-34" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="_Q6uZGGRPYY9oxSEWWTm-33" target="_Q6uZGGRPYY9oxSEWWTm-31">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="_Q6uZGGRPYY9oxSEWWTm-33" value="assign user input to variables for objectTo fields" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="375" y="1110" width="140" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="_Q6uZGGRPYY9oxSEWWTm-35" value="create itemTo and add it to the collection&lt;br&gt;addObject();" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#33FF99;" vertex="1" parent="1">
+          <mxGeometry x="375" y="1490" width="140" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="_Q6uZGGRPYY9oxSEWWTm-37" value="show summary and ask user to confirm" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="465" y="900" width="140" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="_Q6uZGGRPYY9oxSEWWTm-38" value="ask user to confimr" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" vertex="1" parent="1">
+          <mxGeometry x="430" y="1030" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="_Q6uZGGRPYY9oxSEWWTm-43" value="TaxTo" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-330" y="-360" width="230" height="270" as="geometry" />
+        </mxCell>
+        <mxCell id="_Q6uZGGRPYY9oxSEWWTm-44" value="- stateAbbreviation: String&lt;br&gt;- stateName: String&lt;br&gt;- taxRate: BigDecimal&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="_Q6uZGGRPYY9oxSEWWTm-43">
+          <mxGeometry y="26" width="230" height="144" as="geometry" />
+        </mxCell>
+        <mxCell id="_Q6uZGGRPYY9oxSEWWTm-45" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="_Q6uZGGRPYY9oxSEWWTm-43">
+          <mxGeometry y="170" width="230" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="_Q6uZGGRPYY9oxSEWWTm-46" value="+ readFromTaxFile(): List&amp;lt;TaxTo&amp;gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="_Q6uZGGRPYY9oxSEWWTm-43">
+          <mxGeometry y="178" width="230" height="92" as="geometry" />
+        </mxCell>
+        <mxCell id="_Q6uZGGRPYY9oxSEWWTm-47" value="ProductTo" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-60" y="-360" width="240" height="270" as="geometry" />
+        </mxCell>
+        <mxCell id="_Q6uZGGRPYY9oxSEWWTm-48" value="- productType: String&lt;br&gt;- costPerSquareFoot: BigDecimal&lt;br&gt;- laberCostPerSquareFoot: BigDecimal&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="_Q6uZGGRPYY9oxSEWWTm-47">
+          <mxGeometry y="26" width="240" height="134" as="geometry" />
+        </mxCell>
+        <mxCell id="_Q6uZGGRPYY9oxSEWWTm-49" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="_Q6uZGGRPYY9oxSEWWTm-47">
+          <mxGeometry y="160" width="240" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="_Q6uZGGRPYY9oxSEWWTm-50" value="+ readFromProductFile(): List&amp;lt;ProductTo&amp;gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="_Q6uZGGRPYY9oxSEWWTm-47">
+          <mxGeometry y="168" width="240" height="102" as="geometry" />
+        </mxCell>
+        <mxCell id="_Q6uZGGRPYY9oxSEWWTm-59" value="materialCost = area * costPerSquareFoot&lt;br&gt;laborCost = area * laborCostPerSquareFoot&lt;br&gt;tax = (materialCost + laborCost) * (taxRate/100)&lt;br&gt;total = materialCost + labourCost + tax" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-740" y="-60" width="330" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="_Q6uZGGRPYY9oxSEWWTm-60" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.433;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="_Q6uZGGRPYY9oxSEWWTm-3" target="_Q6uZGGRPYY9oxSEWWTm-59">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="_Q6uZGGRPYY9oxSEWWTm-66" value="Map is the interface we will use for HashMap. The keys will be the order dates (they are unique) and the values will be a array list collection of all the orders objects (orderTo) from that day." style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="225" y="-590" width="240" height="135" as="geometry" />
+        </mxCell>
+        <mxCell id="_Q6uZGGRPYY9oxSEWWTm-70" value="" style="endArrow=none;dashed=1;html=1;dashPattern=1 3;strokeWidth=2;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.005;entryY=0.281;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="_Q6uZGGRPYY9oxSEWWTm-66" target="_Q6uZGGRPYY9oxSEWWTm-25">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="190" y="-360" as="sourcePoint" />
+            <mxPoint x="240" y="-410" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="_Q6uZGGRPYY9oxSEWWTm-71" value="List&amp;lt;OrderTo&amp;gt; could also be Set&amp;lt;OrderTo&amp;gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="527.5" y="-420" width="250" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="_Q6uZGGRPYY9oxSEWWTm-72" value="To list all values and all keys:&lt;br&gt;- The values of a map are a collection (as there can be duplicates) so &lt;br&gt;Collection&amp;lt;List&amp;lt;OrderTo&amp;gt;&amp;gt; ordersCollectionForAllDates = orderDateKeyOrdersValue.values();&lt;br&gt;-The keys of a map are a set (as they are all distinct)&lt;br&gt;Set&amp;lt;DateTime&amp;gt; allOrderDates = orderDateKeyOrdersValue.keySet();" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="515" y="-560" width="520" height="90" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
