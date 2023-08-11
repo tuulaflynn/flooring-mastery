@@ -16,7 +16,14 @@ public class OrderServiceImpl implements OrderService {
         orderDao = new OrderDaoImpl();
     }
 
+    @Override
     public Map<String, List<OrderTo>> readFromOrderFolder() throws IOException {
         return orderDao.readFromOrderFolder();
     }
+
+    @Override
+    public List<OrderTo> fetchOrdersForOrderDate(String userDate) {
+        return orderDao.fetchOrdersForOrderDate(userDate);
+    }
+
 }

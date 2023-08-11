@@ -14,25 +14,30 @@ import java.util.Map;
 
 public class OrderDaoImpl implements OrderDao {
     Map<String, List<OrderTo>> hashMapDateAndOrderCollections = new HashMap<>();
-    List<OrderTo> ordersSameDateCollection = new ArrayList<>();
 
+
+    @Override
     public Map<String, List<OrderTo>> readFromOrderFolder() throws IOException {
+        // Array of all the files in Orders folder.
         File ordersFolder = new File("fileData/Orders");
         File[] files = ordersFolder.listFiles();
 
+        // For each file read the lines in the file to a collection. Add the collection as a value to the hashMap.
         for (File file : files) {
-            readFromOrderFile(file);        // Method returns a collection containing all OrderTo with the same orderDate.
-
             // The fileDate is the orderDate, it is the key to the collection of orders on a given sales date.
             String fileName = file.getName();
             String fileDate = fileName.substring(7, (fileName.length() - 4));
-            // Adding the collection with the key value fileDate to the hashmap.
-            hashMapDateAndOrderCollections.put(fileDate, ordersSameDateCollection);
+
+            // Adding the collection with the key fileDate and value, a collection containing all OrderTo objects from a file.
+            hashMapDateAndOrderCollections.put(fileDate, readFromOrderFile(file));
         }
         return hashMapDateAndOrderCollections;
     }
 
     public List<OrderTo> readFromOrderFile(File file) throws IOException {
+        // All the data from a file is added to a collection called ordersSameDateCollection.
+        List<OrderTo> ordersSameDateCollection = new ArrayList<>();
+
         FileReader fr = new FileReader(file);
         BufferedReader br = new BufferedReader(fr);
         String line;
@@ -56,13 +61,21 @@ public class OrderDaoImpl implements OrderDao {
             BigDecimal tax = new BigDecimal(lineArr[10]);
             BigDecimal total = new BigDecimal(lineArr[11]);
 
+            // Creates an orderTo object for the record.
             OrderTo orderTo = new OrderTo(orderNumber, customerName, state, taxRate, productType, area, costPerSquareFoot,
                     laborPerSquareFoot, materialCost, laborCost, tax, total);
 
-            // Objects from the same orderDate (file) are added to a collection.
+            // Object created from the data is added to the collection.
             ordersSameDateCollection.add(orderTo);
         }
+        // Returns the collection of all the records (which are now objects) from the file.
         return ordersSameDateCollection;
+    }
+
+    @Override
+    public List<OrderTo> fetchOrdersForOrderDate(String userDate) {
+        // Search the hashMap for the key 'userDate' and return its value (a collection). If no such key exits, null is returned.
+        return hashMapDateAndOrderCollections.get(userDate);
     }
 
 }

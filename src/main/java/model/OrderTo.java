@@ -92,8 +92,7 @@ public class OrderTo {
 
     @Override
     public String toString() {
-        return "OrderTo{" +
-                "orderNumber=" + orderNumber +
+        return "OrderNumber=" + orderNumber +
                 ", customerName='" + customerName + '\'' +
                 ", state='" + state + '\'' +
                 ", taxRate=" + taxRate +
@@ -104,7 +103,6 @@ public class OrderTo {
                 ", materialCost=" + materialCost +
                 ", laborCost=" + laborCost +
                 ", tax=" + tax +
-                ", total=" + total +
-                '}';
+                ", total=" + total ;
     }
 }

@@ -1,8 +1,11 @@
 package view;
 
+import model.OrderTo;
 import service.*;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.Scanner;
 
 public class View {
 
@@ -25,26 +28,78 @@ public class View {
 
     public void readFromTaxFile() {
         try {
-            System.out.println(taxService.readFromTaxFile());
+            taxService.readFromTaxFile();
         } catch (IOException e) {
             System.out.println("There has been an error trying to read from 'Taxes.txt' file.");
         }
     }
-
     public void readFromProductFile() {
         try {
-            System.out.println(productService.readFromProductFile());
+           productService.readFromProductFile();
         } catch (IOException e) {
             System.out.println("There has been an error trying to read from 'Products.txt' file.");
         }
     }
-
     public void readFromOrderFolder() {
         try {
-            System.out.println(orderService.readFromOrderFolder());
+            orderService.readFromOrderFolder();
         } catch (IOException e) {
             System.out.println("There has been an error trying to read the data from Orders folder.");
         }
+    }
+
+    public void homeScreen() {
+        String userChoice = "";
+        Scanner scan = new Scanner(System.in);
+
+        do {
+            System.out.println("**************************************************");
+            System.out.println("* <<Flooring Program>>");
+            System.out.println("* 1. Display Orders");
+            System.out.println("* 2. Add an Order");
+            System.out.println("* 3. Edit an Order");
+            System.out.println("* 4. Remove an Order");
+            System.out.println("* 5. Export All Data");
+            System.out.println("* 6. Quit");
+            System.out.println("**************************************************");
+
+            System.out.println("Enter option: ");
+            userChoice = scan.nextLine();
+
+            switch (userChoice) {
+                case "1":
+                    System.out.println("Enter date for orders: (MMDDYYYY)");
+                    String userDate = scan.nextLine();
+                    // Saving the collection returned for given orderDate.
+                    List<OrderTo> returnObject = orderService.fetchOrdersForOrderDate(userDate);
+                    if (returnObject != null) {
+                        System.out.println("The orders for date " + userDate + " are...");
+                        for (OrderTo order: returnObject) {
+                            System.out.println(order);
+                        }
+                    } else {        // No fileName with the given date exists in the hashMap.
+                        System.out.println("Error. No orders exist for date " + userDate);
+                    }
+                    break;
+                case "2":
+                    System.out.println("add an order");
+                    break;
+                case "3":
+                    System.out.println("edit an order");
+                    break;
+                case "4":
+                    System.out.println("remove an order");
+                    break;
+                case "5":
+                    System.out.println("export all data");
+                    break;
+                case "6":
+                    System.out.println("Quiting program...");
+                    break;
+                default:
+                    System.out.println("Enter a valid menu option (number only).");
+            }
+        } while (!userChoice.equals("6"));
     }
 
 }
