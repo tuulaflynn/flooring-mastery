@@ -18,4 +18,14 @@ public class ProductServiceImpl implements ProductService {
     public Map <String, ProductTo> readFromProductFile() throws IOException {
         return productDao.readFromProductFile();
     }
+
+    @Override
+    public String displayProductTypeAndPrice() {
+        return productDao.displayProductTypeAndPrice();
+    }
+
+    @Override
+    public ProductTo fetchProductTo(String productType){
+        return productDao.fetchProductTo(productType);
+    }
 }

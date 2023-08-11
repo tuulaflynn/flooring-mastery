@@ -11,4 +11,7 @@ public interface OrderDao {
 
     List<OrderTo> fetchOrdersForOrderDate(String userDate);
 
+    boolean addOrder(String orderDate, OrderTo orderTo);
+
+
 }

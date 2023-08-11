@@ -39,10 +39,17 @@ public class TaxDaoImpl implements TaxDao {
             // Creates a TaxTo object with the data.
             TaxTo taxTo = new TaxTo(lineArr[0], lineArr[1], taxRate);
 
-            // Add data to the map as key:stateAbbreviation with value:TaxTo.
-            taxHashMap.put(lineArr[0], taxTo);
+            // Add data to the map as key:stateName with value:TaxTo.
+            taxHashMap.put(lineArr[1], taxTo);
         }
+        // Copy of the hashMap which will be sent between the layers.
+        // EDIT: NEED TO CHECK THESE HASHMAPS DON'T REFERENCE THE SAME OBJECTS.
+        Map<String, TaxTo> copyTaxHashMap = new HashMap<>(taxHashMap);
+        return copyTaxHashMap;
+    }
 
-        return taxHashMap;
+    public TaxTo fetchTaxTo(String key) {
+        // Returning a copy of the taxTo object which had the key value 'key' in the taxHashMap.
+        return taxHashMap.get(key).copyTaxTo();
     }
 }

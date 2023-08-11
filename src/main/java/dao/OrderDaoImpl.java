@@ -78,5 +78,23 @@ public class OrderDaoImpl implements OrderDao {
         return hashMapDateAndOrderCollections.get(userDate);
     }
 
+    @Override
+    public boolean addOrder(String orderDate, OrderTo orderTo) {
+        // First method returns the value for orderDate, which is an ArrayList of orderTo object (all with the same orderDate).
+        List<OrderTo> potentialCollection = hashMapDateAndOrderCollections.get(orderDate);
+        if ( potentialCollection != null) {
+            // Add orderTo to the collection that already exists in the hashmap, i.e. there are already orders on given date.
+            potentialCollection.add(orderTo);
+        }
+        else {
+            // Create the collection which will store all orders for 'orderDate'.
+            List<OrderTo> ordersSameDateCollection = new ArrayList<>();
+            // Add the created orderTo to the collection.
+            ordersSameDateCollection.add(orderTo);
+            // Add the collection to the hashmap with key of the orderDate.
+            hashMapDateAndOrderCollections.put(orderDate, ordersSameDateCollection);
+        }
+        return true;
+    }
 }
 

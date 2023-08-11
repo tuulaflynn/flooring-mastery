@@ -7,15 +7,16 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
 public class ProductDaoImpl implements ProductDao {
 
-    Map<String, ProductTo> productsHashMap;
+    Map<String, ProductTo> productHashMap;
 
     public ProductDaoImpl() {
-        productsHashMap = new HashMap<>();
+        productHashMap = new HashMap<>();
     }
 
     @Override
@@ -41,10 +42,28 @@ public class ProductDaoImpl implements ProductDao {
             ProductTo productTo = new ProductTo(lineArr[0], costPerSquareFoot, laborPerSquareFoot);
 
             // Add data to the map as key:productType with value:productIO.
-            productsHashMap.put(lineArr[0], productTo);
+            productHashMap.put(lineArr[0], productTo);
         }
-
-        return productsHashMap;
+        // Copy of the hashMap which will be sent between the layers.
+        // EDIT: NEED TO CHECK THESE HASHMAPS DON'T REFERENCE THE SAME OBJECTS.
+        Map<String, ProductTo> copyProductHashMap = new HashMap<>(productHashMap);
+        return copyProductHashMap;
     }
 
+    @Override
+    public String displayProductTypeAndPrice() {
+        Collection<ProductTo> productTos = productHashMap.values();
+        String returnString = "";
+        for (ProductTo productTo: productTos) {
+            returnString += "product type: " + productTo.getProductType() + " || cost per sq.ft £" + productTo.getCostPerSquareFoot()
+                    + " || labor per sq.ft £" + productTo.getLaborCostPerSquareFoot() + "\n";
+        }
+        return returnString;
+    }
+
+    @Override
+    public ProductTo fetchProductTo(String productType) {
+        // Returning a copy of the productTo object which had the key value 'productType' in the productsHashMap.
+        return productHashMap.get(productType).copyProductTo();
+    }
 }
