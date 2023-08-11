@@ -1,9 +1,12 @@
 package view;
 
 import model.OrderTo;
+import model.ProductTo;
+import model.TaxTo;
 import service.*;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Scanner;
 
@@ -78,12 +81,88 @@ public class View {
                             System.out.println(order);
                         }
                     } else {        // No fileName with the given date exists in the hashMap.
+
                         System.out.println("Error. No orders exist for date " + userDate);
                     }
                     break;
+
                 case "2":
-                    System.out.println("add an order");
+                    System.out.println("Enter the date for the order (MMDDYYYY): ");
+                    // Should add proper error handling for the format of the date.
+                    String userOrderDate = scan.nextLine();
+                    try {
+                        Integer.parseInt(userOrderDate);
+                    } catch (NumberFormatException e) {
+                        System.out.println("Error. Only digits can be entered as a date.");
+                        break;
+                    }
+                    if (!orderService.isDateFuture(userOrderDate)) {
+                        // Date is not in the future
+                        System.out.println("Error. Date must be in the future. ");
+                        break;      // A loop should be created for chance to re-enter option.
+                    }
+
+                    System.out.println("Enter the customer name ");
+                    String userCustomerName = scan.nextLine();
+                    if (userCustomerName.equals("")) {
+                        System.out.println("Customer name can not be blank.");
+                    }
+                    // EDIT: NEED TO MAKE IT ONLY [0-9][a-z][,.][A-Z]
+
+                    System.out.println("Enter state (capitalised fullname): ");
+                    String userStateName = scan.nextLine();
+                    // Fetching the value, taxTo object, for the key 'userStateName' from the taxHashMap collection.
+                    TaxTo taxTo = taxService.fetchTaxTo(userStateName);
+                    // If no such key exists in the hashMap, the stateName entered is invalid.
+                    if (taxTo == null) {
+                        System.out.println("Error. We cannot sell in the state entered. ");
+                        break;
+                    }
+
+                    System.out.println("------------------------------------------------------------------------------");
+                    System.out.println("Products and prices");
+                    System.out.println(productService.displayProductTypeAndPrice());
+                    System.out.println("------------------------------------------------------------------------------");
+                    System.out.println("Enter the product type: ");
+                    String userProductType = scan.nextLine();
+                    // Fetching the value, productTo object, for the key 'userProductType' from the productHashMap.
+                    ProductTo productTo = productService.fetchProductTo(userProductType);
+                    // If no such key exists in the hashMap, userProductType entry is invalid.
+                    if (productTo == null) {
+                        System.out.println("Error. We cannot sell in the state entered. ");
+                        break;
+                    }
+
+                    System.out.println("Enter area: (positive decimal) ");
+                    String userAreaString = scan.nextLine();
+
+                    BigDecimal userArea;
+                    try {
+                        userArea = new BigDecimal(userAreaString);
+                    } catch (NumberFormatException e) {
+                        System.out.println("Error. Area entered must be only digits.");
+                        break;
+                    }
+
+                    // Creating an OrderTo object with composition of objects taxTo and productTo.
+                    // NEED TO WORK OUT HOW TO DO ORDERNUMBER
+                    OrderTo orderTo = new OrderTo(5, userCustomerName, taxTo, productTo, userArea);
+
+                    System.out.println("------------------------------------------------------------------------------");
+                    System.out.println("Summary of your order: \n");
+                    System.out.println(orderTo.orderBreakdownDisplay());
+
+                    System.out.println("Confirm order: (y/n)");
+                    String confirm = scan.nextLine();
+                    if (confirm.equals("y")) {
+                        orderService.addOrder(userOrderDate, orderTo);
+                        System.out.println("Confirmation, the order has been added.");
+                    }
+                    else {
+                        System.out.println("Order has not been added. Returning to main menu.");
+                    }
                     break;
+
                 case "3":
                     System.out.println("edit an order");
                     break;

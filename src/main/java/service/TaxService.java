@@ -7,4 +7,6 @@ import java.util.Map;
 
 public interface TaxService {
     Map<String, TaxTo> readFromTaxFile() throws IOException;
+
+    TaxTo fetchTaxTo(String key);
 }

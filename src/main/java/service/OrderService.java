@@ -10,4 +10,7 @@ public interface OrderService {
     Map<String, List<OrderTo>> readFromOrderFolder() throws IOException;
     List<OrderTo> fetchOrdersForOrderDate(String userDate);
 
+    boolean isDateFuture(String userDate);
+
+    boolean addOrder(String orderDate, OrderTo orderTo);
 }
