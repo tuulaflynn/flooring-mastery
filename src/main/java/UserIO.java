@@ -1,15 +1,9 @@
-import view.OrderView;
-import view.ProductView;
-import view.TaxView;
+import view.View;
 
 public class UserIO {
     public static void main(String[] args) {
-        ProductView productView = new ProductView();
-        TaxView taxView = new TaxView();
-        OrderView orderView = new OrderView();
+        // Initialising the view object calls the View constructor which intern calls the reading and storing of all data.
+        View view = new View();
 
-        productView.readFromProductFile();
-        taxView.readFromTaxFile();
-        orderView.readFromOrderFolder();
     }
 }
