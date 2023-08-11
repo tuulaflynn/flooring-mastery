@@ -29,10 +29,12 @@ public class TaxTo {
 
     @Override
     public String toString() {
-        return "\nTaxTo{" +
-                "stateAbbreviation='" + stateAbbreviation + '\'' +
+        return  "{stateAbbreviation='" + stateAbbreviation + '\'' +
                 ", stateName='" + stateName + '\'' +
-                ", taxRate=" + taxRate +
-                '}' + "\n";
+                ", taxRate=" + taxRate +"}\n";
+    }
+
+    public TaxTo copyTaxTo() {
+        return new TaxTo(this.stateAbbreviation, this.stateName, this.taxRate);
     }
 }

@@ -30,10 +30,13 @@ public class ProductTo {
 
     @Override
     public String toString() {
-        return "\nProductTo{" +
-                "productType='" + productType + '\'' +
+        return  "productType='" + productType + '\'' +
                 ", costPerSquareFoot=" + costPerSquareFoot +
-                ", laborCostPerSquareFoot=" + laborCostPerSquareFoot +
-                '}' + "\n";
+                ", laborCostPerSquareFoot=" + laborCostPerSquareFoot ;
     }
+
+    public ProductTo copyProductTo() {
+        return new ProductTo(this.productType, this.costPerSquareFoot, this.laborCostPerSquareFoot);
+    }
+
 }

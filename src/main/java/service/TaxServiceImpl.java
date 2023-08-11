@@ -15,7 +15,14 @@ public class TaxServiceImpl implements TaxService {
         taxDao = new TaxDaoImpl();
     }
 
+    @Override
     public Map<String, TaxTo> readFromTaxFile() throws IOException {
         return taxDao.readFromTaxFile();
     }
+
+    @Override
+    public TaxTo fetchTaxTo(String key) {
+        return taxDao.fetchTaxTo(key);
+    }
+
 }

@@ -9,4 +9,8 @@ import java.util.Map;
 public interface ProductService {
     Map<String, ProductTo> readFromProductFile() throws IOException;
 
+    String displayProductTypeAndPrice();
+
+    ProductTo fetchProductTo(String productType);
+
 }

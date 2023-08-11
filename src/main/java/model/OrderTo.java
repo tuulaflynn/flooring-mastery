@@ -1,6 +1,7 @@
 package model;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 public class OrderTo {
     private int orderNumber;
@@ -16,9 +17,12 @@ public class OrderTo {
     private BigDecimal tax;
     private BigDecimal total;
 
+    private BigDecimal bigDecimal100 = new BigDecimal(100);     // Used in calculating tax field by diving the tax rate by 100.
+
     public OrderTo(int orderNumber, String customerName, String state, BigDecimal taxRate, String productType,
                    BigDecimal area, BigDecimal costPerSquareFoot, BigDecimal laborCostPerSquareFoot,
                    BigDecimal materialCost, BigDecimal laborCost, BigDecimal tax, BigDecimal total) {
+        // Constructor for reading in the data from the files.
         this.orderNumber = orderNumber;
         this.customerName = customerName;
         this.state = state;
@@ -32,19 +36,22 @@ public class OrderTo {
         this.tax = tax;
         this.total = total;
     }
-/*  OrderTo(int orderNumber, String customerName, TaxTo taxTo, ProductTo productTo, BigDecimal area){
-
+    public OrderTo(int orderNumber, String customerName, TaxTo taxTo, ProductTo productTo, BigDecimal area){
+        // Constructor to make order objects via the program.
         this.orderNumber = orderNumber;
         this.customerName = customerName;
         this.state = taxTo.getStateAbbreviation();
-        //this.taxRate = taxTo.getTaxRate();
+        this.taxRate = taxTo.getTaxRate();
         this.productType = productTo.getProductType();
         this.area = area;
-        // maybe need costPerSquareFoot and laborCostPerSquareFoot
+        this.costPerSquareFoot = productTo.getCostPerSquareFoot();
+        this.laborCostPerSquareFoot = productTo.getLaborCostPerSquareFoot();
         this.materialCost = area.multiply(productTo.getCostPerSquareFoot());
         this.laborCost = area.multiply(productTo.getLaborCostPerSquareFoot());
+        this.tax = (this.materialCost.add(this.laborCost)).multiply(taxTo.getTaxRate().divide(bigDecimal100, 2, RoundingMode.HALF_UP));
+        this.total = (this.materialCost.add(this.laborCost)).add(this.tax);
 
-    }*/
+    }
 
     public int getOrderNumber() {
         return orderNumber;
@@ -92,8 +99,7 @@ public class OrderTo {
 
     @Override
     public String toString() {
-        return "OrderTo{" +
-                "orderNumber=" + orderNumber +
+        return "OrderNumber=" + orderNumber +
                 ", customerName='" + customerName + '\'' +
                 ", state='" + state + '\'' +
                 ", taxRate=" + taxRate +
@@ -104,7 +110,21 @@ public class OrderTo {
                 ", materialCost=" + materialCost +
                 ", laborCost=" + laborCost +
                 ", tax=" + tax +
-                ", total=" + total +
-                '}';
+                ", total=" + total ;
+    }
+
+    public String orderBreakdownDisplay() {
+        return "OrderNumber=" + orderNumber +
+                "\n customerName='" + customerName + '\'' +
+                "\n state='" + state + '\'' +
+                "\n taxRate=" + taxRate +
+                "\n productType='" + productType + '\'' +
+                "\n area=" + area +
+                "\n costPerSquareFoot=" + costPerSquareFoot +
+                "\n laborCostPerSquareFoot=" + laborCostPerSquareFoot +
+                "\n materialCost=" + materialCost +
+                "\n laborCost=" + laborCost +
+                "\n tax=" + tax +
+                "\n total=" + total ;
     }
 }
