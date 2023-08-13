@@ -15,7 +15,7 @@ public class OrderServiceImpl implements OrderService {
 
     OrderDao orderDao;
 
-    public OrderServiceImpl(){
+    public OrderServiceImpl() {
         orderDao = new OrderDaoImpl();
     }
 
@@ -47,4 +47,10 @@ public class OrderServiceImpl implements OrderService {
     public boolean addOrder(String orderDate, OrderTo orderTo) {
         return orderDao.addOrder(orderDate, orderTo);
     }
+
+    @Override
+    public int calculateOrderNumber() {
+        return orderDao.calculateOrderNumber();
+    }
+
 }

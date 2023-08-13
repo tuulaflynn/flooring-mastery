@@ -96,5 +96,24 @@ public class OrderDaoImpl implements OrderDao {
         }
         return true;
     }
+
+    @Override
+    public int calculateOrderNumber() {
+        // The hashMapDateAndOrderCollection keys need to be traversed through. Each key represents a file.
+        // Each key's value is a collection, which represent all the orders of the file (all orders with the same orderDate).
+        // The size of all these collections need to be added to calculate the total number of orders.
+        int orderNumber = 0;
+
+        for (List<OrderTo> OrdersSameDateCollection : hashMapDateAndOrderCollections.values()) {
+            // Size of each collection is the number of orders for that date.
+            orderNumber += OrdersSameDateCollection.size();
+
+        }
+        // At the end of the loop orderNumber represents the total number of orders.
+
+        return ++orderNumber;       // Add one to orderNumber and then return it.
+        // This generates an order number for the user based on the next available order #.
+    }
+
 }
 

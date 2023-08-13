@@ -13,5 +13,5 @@ public interface OrderDao {
 
     boolean addOrder(String orderDate, OrderTo orderTo);
 
-
+    int calculateOrderNumber();
 }

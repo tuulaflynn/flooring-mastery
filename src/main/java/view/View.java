@@ -102,6 +102,8 @@ public class View {
                         break;      // A loop should be created for chance to re-enter option.
                     }
 
+                    int orderNumber = orderService.calculateOrderNumber();
+
                     System.out.println("Enter the customer name ");
                     String userCustomerName = scan.nextLine();
                     if (userCustomerName.equals("")) {
@@ -146,7 +148,7 @@ public class View {
 
                     // Creating an OrderTo object with composition of objects taxTo and productTo.
                     // NEED TO WORK OUT HOW TO DO ORDERNUMBER
-                    OrderTo orderTo = new OrderTo(5, userCustomerName, taxTo, productTo, userArea);
+                    OrderTo orderTo = new OrderTo(orderNumber, userCustomerName, taxTo, productTo, userArea);
 
                     System.out.println("------------------------------------------------------------------------------");
                     System.out.println("Summary of your order: \n");
@@ -170,7 +172,7 @@ public class View {
                     System.out.println("remove an order");
                     break;
                 case "5":
-                    System.out.println("export all data");
+                    System.out.println("Exporting all data");
                     break;
                 case "6":
                     System.out.println("Quiting program...");
