@@ -147,7 +147,6 @@ public class View {
                     }
 
                     // Creating an OrderTo object with composition of objects taxTo and productTo.
-                    // NEED TO WORK OUT HOW TO DO ORDERNUMBER
                     OrderTo orderTo = new OrderTo(orderNumber, userCustomerName, taxTo, productTo, userArea);
 
                     System.out.println("------------------------------------------------------------------------------");
@@ -172,7 +171,8 @@ public class View {
                     System.out.println("remove an order");
                     break;
                 case "5":
-                    System.out.println("Exporting all data");
+                    System.out.println("Exporting all orders to Orders folder.");
+                    System.out.println("Each orderDate is a file containing all orders");
                     break;
                 case "6":
                     System.out.println("Quiting program...");

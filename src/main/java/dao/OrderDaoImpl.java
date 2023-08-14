@@ -2,10 +2,7 @@ package dao;
 
 import model.OrderTo;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -114,6 +111,35 @@ public class OrderDaoImpl implements OrderDao {
         return ++orderNumber;       // Add one to orderNumber and then return it.
         // This generates an order number for the user based on the next available order #.
     }
+    
+    public void editOrder() {
 
+    }
+
+    @Override
+    public void exportToOrdersFolder() throws IOException {
+        // Each key in hashMapsDateAndOrderCollections a string date. A file will be created named Orders_stringDate.txt for each key.
+        // The file will contain the value of the key - which is a collection of orders.
+        // The file will be a header line and then each order on a line.
+
+        // Traverse through the hashMap, for each key.
+        for (String dateString: hashMapDateAndOrderCollections.keySet()) {
+            // Create a new file if one does not exist for the date
+            String fileNameWithSubDirectory = "fileData/Orders/" + "Orders_" + dateString + ".txt";
+            FileWriter fw = new FileWriter(fileNameWithSubDirectory);
+
+            // Write the header line for the file
+            fw.write("OrderNumber,CustomerName,State,TaxRate,ProductType,Area,CostPerSquareFoot,LaborCostPerSquareFoot,MaterialCost,LaborCost,Tax,Total");
+
+            // For each element in the value collection, write the line to the file.
+            for (OrderTo orderTo: hashMapDateAndOrderCollections.get(dateString)) {
+                fw.write(orderTo.getOrderNumber() + "," + orderTo.getCustomerName() + "," );
+
+            }
+        }
+
+
+
+    }
 }
 

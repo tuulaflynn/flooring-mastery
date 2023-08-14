@@ -85,17 +85,9 @@ public class OrderTo {
         return materialCost;
     }
 
-    /* public void setMaterialCost(BigDecimal materialCost) {
-        this.materialCost = materialCost;
-    }*/
-
     public BigDecimal getLaborCost() {
         return laborCost;
     }
-
-    /* public void setLaborCost(BigDecimal laborCost) {
-        this.laborCost = laborCost;
-    } */
 
     @Override
     public String toString() {

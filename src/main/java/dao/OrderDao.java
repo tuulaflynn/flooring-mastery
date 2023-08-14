@@ -14,4 +14,9 @@ public interface OrderDao {
     boolean addOrder(String orderDate, OrderTo orderTo);
 
     int calculateOrderNumber();
+
+    void editOrder();
+
+    void exportToOrdersFolder() throws IOException;
+
 }
