@@ -15,9 +15,11 @@ public interface OrderService {
 
     boolean addOrder(String orderDate, OrderTo orderTo);
 
-    public int calculateOrderNumber();
+    int calculateOrderNumber();
 
-    void editOrder();
+    OrderTo fetchOrder(String orderDate, int orderNumber);
+
+    String removeOrder(String orderDate, int orderNumber);
 
     void exportToOrdersFolder() throws IOException;
 

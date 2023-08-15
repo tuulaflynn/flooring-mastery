@@ -1,2 +1,1 @@
 OrderNumber,CustomerName,State,TaxRate,ProductType,Area,CostPerSquareFoot,LaborCostPerSquareFoot,MaterialCost,LaborCost,Tax,Total
-6,Tuula,KY,6.00,Tile,30300330303,3.50,4.15,106051156060.50,125746370757.45,13907851609.0770,245705378427.0270

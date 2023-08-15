@@ -55,8 +55,14 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public void editOrder() {
+    public OrderTo fetchOrder(String orderDate, int orderNumber) {
+        return orderDao.fetchOrder(orderDate, orderNumber);
+    }
 
+
+    @Override
+    public String removeOrder(String orderDate, int orderNumber) {
+        return orderDao.removeOrder(orderDate, orderNumber);
     }
 
     @Override

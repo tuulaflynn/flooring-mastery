@@ -285,7 +285,48 @@ public class View {
                     break;
 
                 case "4":
-                    System.out.println("remove an order");
+                    System.out.println("Enter the date for the order (MMDDYYYY): ");
+                    // Should add proper error handling for the format of the date.
+                    String removeOrderDate = scan.nextLine();
+
+                    // Checking that the user has entered only numbers for the date.
+                    try {
+                        Integer.parseInt(removeOrderDate);
+                    } catch (NumberFormatException e) {
+                        System.out.println("Error. Only digits can be entered as a date.");
+                        break;
+                    }
+
+                    System.out.println("Enter the order number of the order you want to remove: ");
+                    // Checking order number entered is an integer.
+                    int removeOrderNumber;
+                    try {
+                       removeOrderNumber = scan.nextInt();
+                       scan.nextLine();     // To move the pointer to the end of the line (in correct position for the next scan).
+                    } catch (NumberFormatException e) {
+                        System.out.println("Invalid order number. Returning to main menu... ");
+                        break;
+                    }
+
+                    // Checking order fetched exists.
+                    OrderTo fetchedOrderTo = orderService.fetchOrder(removeOrderDate, removeOrderNumber);
+                    if (fetchedOrderTo != null) {
+                        System.out.println("Selected order: ");
+                        System.out.println(fetchedOrderTo.orderBreakdownDisplay());
+                        System.out.println("Confirm order removal (y/n): ");
+                        String confirmDelete = scan.nextLine();
+                        if (confirmDelete.equals("y") || confirmDelete.equals("Y")) {
+                            System.out.println(orderService.removeOrder(removeOrderDate, removeOrderNumber));
+                        } else {
+                            System.out.println("Order has not been removed. Program must be exported to save this action.");
+                            System.out.println("Returning to main menu...");
+                            break;
+                        }
+                    } else {
+                        System.out.println("No order exists with order number " + removeOrderNumber + " on date " + removeOrderDate + ".");
+                        System.out.println("Returning to main menu...");
+                        break;
+                    }
                     break;
 
                 case "5":

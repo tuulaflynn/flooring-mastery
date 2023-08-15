@@ -15,7 +15,8 @@ public interface OrderDao {
 
     int calculateOrderNumber();
 
-    void editOrder();
+    OrderTo fetchOrder(String orderDate, int orderNumber);
+    String removeOrder(String orderDate, int orderNumber);
 
     void exportToOrdersFolder() throws IOException;
 

@@ -6,10 +6,7 @@ import model.TaxTo;
 
 import java.io.*;
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class OrderDaoImpl implements OrderDao {
 
@@ -106,8 +103,23 @@ public class OrderDaoImpl implements OrderDao {
         // This generates an order number for the user based on the next available order #.
     }
 
-    public void editOrder() {
+    @Override
+    public OrderTo fetchOrder(String orderDate, int orderNumber) {
+        Iterator<OrderTo> iterator = hashMapDateAndOrderCollections.get(orderDate).iterator();
+        while (iterator.hasNext()) {
+            OrderTo orderTo = iterator.next();
+            if (orderTo.getOrderNumber() == orderNumber) {
+                return orderTo;
+            }
+        }
+        return null;
+    }
 
+    @Override
+    public String removeOrder(String orderDate, int orderNumber) {
+        OrderTo orderToDelete = fetchOrder(orderDate, orderNumber);
+        hashMapDateAndOrderCollections.get(orderDate).remove(orderToDelete);
+        return "Confirmation. Order has been removed.";
     }
 
     @Override
