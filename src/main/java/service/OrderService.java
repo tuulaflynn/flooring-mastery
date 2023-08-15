@@ -17,4 +17,8 @@ public interface OrderService {
 
     public int calculateOrderNumber();
 
+    void editOrder();
+
+    void exportToOrdersFolder() throws IOException;
+
 }

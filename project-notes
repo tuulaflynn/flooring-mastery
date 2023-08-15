@@ -26,3 +26,6 @@ User stories
 4. Remove an order
 5. Export all data
 6. Quite
+
+
+- add error handling for enter state abbreviation for adding an order.

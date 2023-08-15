@@ -13,9 +13,9 @@ import java.util.Scanner;
 public class View {
 
     // Class variables are declared outside the constructor, so they can be used by all methods of the class.
-    TaxService taxService;
-    ProductService productService;
-    OrderService orderService;
+    private TaxService taxService;
+    private ProductService productService;
+    private OrderService orderService;
 
     public View() {
         // Constructor initialises service objects in order to send messages (method calls) to the service layer.
@@ -73,6 +73,7 @@ public class View {
                 case "1":
                     System.out.println("Enter date for orders: (MMDDYYYY)");
                     String userDate = scan.nextLine();
+
                     // Saving the collection returned for given orderDate.
                     List<OrderTo> returnObject = orderService.fetchOrdersForOrderDate(userDate);
                     if (returnObject != null) {
@@ -111,11 +112,11 @@ public class View {
                     }
                     // EDIT: NEED TO MAKE IT ONLY [0-9][a-z][,.][A-Z]
 
-                    System.out.println("Enter state (capitalised fullname): ");
-                    String userStateName = scan.nextLine();
-                    // Fetching the value, taxTo object, for the key 'userStateName' from the taxHashMap collection.
-                    TaxTo taxTo = taxService.fetchTaxTo(userStateName);
-                    // If no such key exists in the hashMap, the stateName entered is invalid.
+                    System.out.println("Enter state abbreviation e.g. TX for Texas: ");
+                    String userStateAbbreviation = scan.nextLine();
+                    // Fetching the value, taxTo object, for the key 'userStateAbbreviation' from the taxHashMap collection.
+                    TaxTo taxTo = taxService.fetchTaxTo(userStateAbbreviation);
+                    // If no such key exists in the hashMap, the stateAbbreviation entered is invalid.
                     if (taxTo == null) {
                         System.out.println("Error. We cannot sell in the state entered. ");
                         break;
@@ -155,7 +156,7 @@ public class View {
 
                     System.out.println("Confirm order: (y/n)");
                     String confirm = scan.nextLine();
-                    if (confirm.equals("y")) {
+                    if (confirm.equals("y") || confirm.equals("Y")) {
                         orderService.addOrder(userOrderDate, orderTo);
                         System.out.println("Confirmation, the order has been added.");
                     }
@@ -172,7 +173,13 @@ public class View {
                     break;
                 case "5":
                     System.out.println("Exporting all orders to Orders folder.");
-                    System.out.println("Each orderDate is a file containing all orders");
+                    System.out.println("A file will be stored for each orderDate containing all orders on that day.");
+                    System.out.println("The file is only visible once the program has been exited via option 6.");
+                    try {
+                        orderService.exportToOrdersFolder();
+                    } catch (IOException e) {
+                        System.out.println("Put in an error handling here for exporting to Orders/ failed.");
+                    }
                     break;
                 case "6":
                     System.out.println("Quiting program...");

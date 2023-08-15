@@ -6,6 +6,8 @@ import java.math.RoundingMode;
 public class OrderTo {
     private int orderNumber;
     private String customerName;
+    private TaxTo taxTo;
+    private ProductTo productTo;
     private String state;
     private BigDecimal taxRate;
     private String productType;
@@ -40,6 +42,8 @@ public class OrderTo {
         // Constructor to make order objects via the program.
         this.orderNumber = orderNumber;
         this.customerName = customerName;
+        this.taxTo = taxTo;
+        this.productTo = productTo;
         this.state = taxTo.getStateAbbreviation();
         this.taxRate = taxTo.getTaxRate();
         this.productType = productTo.getProductType();
@@ -57,16 +61,20 @@ public class OrderTo {
         return orderNumber;
     }
 
-    public void setOrderNumber(int orderNumber) {
-        this.orderNumber = orderNumber;
-    }
-
     public String getCustomerName() {
         return customerName;
     }
 
     public void setCustomerName(String customerName) {
         this.customerName = customerName;
+    }
+
+    public TaxTo getTaxTo() {
+        return this.taxTo;
+    }
+
+    public ProductTo getProductTo() {
+        return this.productTo;
     }
 
     public BigDecimal getArea() {
@@ -87,6 +95,14 @@ public class OrderTo {
 
     public BigDecimal getLaborCost() {
         return laborCost;
+    }
+
+    public BigDecimal getTax() {
+        return tax;
+    }
+
+    public BigDecimal getTotal() {
+        return total;
     }
 
     @Override

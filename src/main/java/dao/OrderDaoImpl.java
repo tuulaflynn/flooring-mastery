@@ -1,6 +1,8 @@
 package dao;
 
 import model.OrderTo;
+import model.ProductTo;
+import model.TaxTo;
 
 import java.io.*;
 import java.math.BigDecimal;
@@ -10,8 +12,10 @@ import java.util.List;
 import java.util.Map;
 
 public class OrderDaoImpl implements OrderDao {
-    Map<String, List<OrderTo>> hashMapDateAndOrderCollections = new HashMap<>();
 
+    // HashMap collection to store all the data from Orders folder. The key is the date which is a substring of the file name.
+    // The value is a collection of orderTo objects from the file which formed the key.
+    private Map<String, List<OrderTo>> hashMapDateAndOrderCollections = new HashMap<>();
 
     @Override
     public Map<String, List<OrderTo>> readFromOrderFolder() throws IOException {
@@ -41,26 +45,18 @@ public class OrderDaoImpl implements OrderDao {
 
         br.readLine();       // To account for the header line in each file.
 
-        while ((line = br.readLine()) != null)
-        {
+        while ((line = br.readLine()) != null) {
             // Reads and saves all the records from an order file into orderTo object.
             String[] lineArr = line.split(",");     // Data from a record is saved in an array as it is a CSV file.
             int orderNumber = Integer.parseInt(lineArr[0]);
             String customerName = lineArr[1];
-            String state = lineArr[2];
-            BigDecimal taxRate = new BigDecimal(lineArr[3]);
+            String stateAbbreviation = lineArr[2];
+            TaxTo taxTo = TaxDao.fetchTaxTo(stateAbbreviation);
             String productType = lineArr[4];
+            ProductTo productTo = ProductDao.fetchProductTo(productType);
             BigDecimal area = new BigDecimal(lineArr[5]);
-            BigDecimal costPerSquareFoot = new BigDecimal(lineArr[6]);
-            BigDecimal laborPerSquareFoot = new BigDecimal(lineArr[7]);
-            BigDecimal materialCost = new BigDecimal(lineArr[8]);
-            BigDecimal laborCost = new BigDecimal(lineArr[9]);
-            BigDecimal tax = new BigDecimal(lineArr[10]);
-            BigDecimal total = new BigDecimal(lineArr[11]);
-
-            // Creates an orderTo object for the record.
-            OrderTo orderTo = new OrderTo(orderNumber, customerName, state, taxRate, productType, area, costPerSquareFoot,
-                    laborPerSquareFoot, materialCost, laborCost, tax, total);
+            // Initialises an orderTo object for the record (which holds the data for a singular order)
+            OrderTo orderTo = new OrderTo(orderNumber, customerName, taxTo, productTo, area);
 
             // Object created from the data is added to the collection.
             ordersSameDateCollection.add(orderTo);
@@ -79,11 +75,10 @@ public class OrderDaoImpl implements OrderDao {
     public boolean addOrder(String orderDate, OrderTo orderTo) {
         // First method returns the value for orderDate, which is an ArrayList of orderTo object (all with the same orderDate).
         List<OrderTo> potentialCollection = hashMapDateAndOrderCollections.get(orderDate);
-        if ( potentialCollection != null) {
+        if (potentialCollection != null) {
             // Add orderTo to the collection that already exists in the hashmap, i.e. there are already orders on given date.
             potentialCollection.add(orderTo);
-        }
-        else {
+        } else {
             // Create the collection which will store all orders for 'orderDate'.
             List<OrderTo> ordersSameDateCollection = new ArrayList<>();
             // Add the created orderTo to the collection.
@@ -107,11 +102,10 @@ public class OrderDaoImpl implements OrderDao {
 
         }
         // At the end of the loop orderNumber represents the total number of orders.
-
         return ++orderNumber;       // Add one to orderNumber and then return it.
         // This generates an order number for the user based on the next available order #.
     }
-    
+
     public void editOrder() {
 
     }
@@ -119,27 +113,38 @@ public class OrderDaoImpl implements OrderDao {
     @Override
     public void exportToOrdersFolder() throws IOException {
         // Each key in hashMapsDateAndOrderCollections a string date. A file will be created named Orders_stringDate.txt for each key.
-        // The file will contain the value of the key - which is a collection of orders.
+        // The file will contain the records of all orders stored in the value (a collection) for the key.
         // The file will be a header line and then each order on a line.
 
         // Traverse through the hashMap, for each key.
-        for (String dateString: hashMapDateAndOrderCollections.keySet()) {
+        for (String dateString : hashMapDateAndOrderCollections.keySet()) {
             // Create a new file if one does not exist for the date
             String fileNameWithSubDirectory = "fileData/Orders/" + "Orders_" + dateString + ".txt";
             FileWriter fw = new FileWriter(fileNameWithSubDirectory);
 
             // Write the header line for the file
-            fw.write("OrderNumber,CustomerName,State,TaxRate,ProductType,Area,CostPerSquareFoot,LaborCostPerSquareFoot,MaterialCost,LaborCost,Tax,Total");
+            fw.write("OrderNumber,CustomerName,State,TaxRate,ProductType,Area,CostPerSquareFoot,LaborCostPerSquareFoot,MaterialCost,LaborCost,Tax,Total\n");
 
             // For each element in the value collection, write the line to the file.
-            for (OrderTo orderTo: hashMapDateAndOrderCollections.get(dateString)) {
-                fw.write(orderTo.getOrderNumber() + "," + orderTo.getCustomerName() + "," );
-
+            for (OrderTo orderTo : hashMapDateAndOrderCollections.get(dateString)) {
+                fw.write(orderTo.getOrderNumber() + "," +
+                        orderTo.getCustomerName() + "," +
+                        orderTo.getTaxTo().getStateAbbreviation() + "," +
+                        orderTo.getTaxTo().getTaxRate() + "," +
+                        orderTo.getProductTo().getProductType() + "," +
+                        orderTo.getArea() + "," +
+                        orderTo.getProductTo().getCostPerSquareFoot() + "," +
+                        orderTo.getProductTo().getLaborCostPerSquareFoot() + "," +
+                        orderTo.getMaterialCost() + "," +
+                        orderTo.getLaborCost() + "," +
+                        orderTo.getTax() + "," +
+                        orderTo.getTotal() +
+                        "\n");
+                fw.flush();
             }
+            fw.close();
         }
-
-
-
     }
+
 }
 

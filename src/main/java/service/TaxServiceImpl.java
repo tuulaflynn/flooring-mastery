@@ -1,7 +1,6 @@
 package service;
 
 import dao.TaxDao;
-import dao.TaxDaoImpl;
 import model.TaxTo;
 
 import java.io.IOException;
@@ -9,20 +8,16 @@ import java.util.Map;
 
 public class TaxServiceImpl implements TaxService {
 
-    TaxDao taxDao;
-
-    public TaxServiceImpl() {
-        taxDao = new TaxDaoImpl();
-    }
-
     @Override
     public Map<String, TaxTo> readFromTaxFile() throws IOException {
-        return taxDao.readFromTaxFile();
+        // Method calls the static method readFromTaxFile() of the TaxDao class and returns the result.
+        return TaxDao.readFromTaxFile();
     }
 
     @Override
     public TaxTo fetchTaxTo(String key) {
-        return taxDao.fetchTaxTo(key);
+        // Method calls the static method fetchTaxTo() of TaxDao class and returns the taxTo found (if one exists) else null.
+        return TaxDao.fetchTaxTo(key);
     }
 
 }
