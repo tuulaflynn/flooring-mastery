@@ -6,6 +6,8 @@ import java.math.RoundingMode;
 public class OrderTo {
     private int orderNumber;
     private String customerName;
+    private TaxTo taxTo;
+    private ProductTo productTo;
     private String state;
     private BigDecimal taxRate;
     private String productType;
@@ -19,27 +21,13 @@ public class OrderTo {
 
     private BigDecimal bigDecimal100 = new BigDecimal(100);     // Used in calculating tax field by diving the tax rate by 100.
 
-    public OrderTo(int orderNumber, String customerName, String state, BigDecimal taxRate, String productType,
-                   BigDecimal area, BigDecimal costPerSquareFoot, BigDecimal laborCostPerSquareFoot,
-                   BigDecimal materialCost, BigDecimal laborCost, BigDecimal tax, BigDecimal total) {
-        // Constructor for reading in the data from the files.
-        this.orderNumber = orderNumber;
-        this.customerName = customerName;
-        this.state = state;
-        this.taxRate = taxRate;
-        this.productType = productType;
-        this.area = area;
-        this.costPerSquareFoot = costPerSquareFoot;
-        this.laborCostPerSquareFoot = laborCostPerSquareFoot;
-        this.materialCost = materialCost;
-        this.laborCost = laborCost;
-        this.tax = tax;
-        this.total = total;
-    }
+
     public OrderTo(int orderNumber, String customerName, TaxTo taxTo, ProductTo productTo, BigDecimal area){
         // Constructor to make order objects via the program.
         this.orderNumber = orderNumber;
         this.customerName = customerName;
+        this.taxTo = taxTo;
+        this.productTo = productTo;
         this.state = taxTo.getStateAbbreviation();
         this.taxRate = taxTo.getTaxRate();
         this.productType = productTo.getProductType();
@@ -57,16 +45,20 @@ public class OrderTo {
         return orderNumber;
     }
 
-    public void setOrderNumber(int orderNumber) {
-        this.orderNumber = orderNumber;
-    }
-
     public String getCustomerName() {
         return customerName;
     }
 
     public void setCustomerName(String customerName) {
         this.customerName = customerName;
+    }
+
+    public TaxTo getTaxTo() {
+        return this.taxTo;
+    }
+
+    public ProductTo getProductTo() {
+        return this.productTo;
     }
 
     public BigDecimal getArea() {
@@ -85,17 +77,17 @@ public class OrderTo {
         return materialCost;
     }
 
-    /* public void setMaterialCost(BigDecimal materialCost) {
-        this.materialCost = materialCost;
-    }*/
-
     public BigDecimal getLaborCost() {
         return laborCost;
     }
 
-    /* public void setLaborCost(BigDecimal laborCost) {
-        this.laborCost = laborCost;
-    } */
+    public BigDecimal getTax() {
+        return tax;
+    }
+
+    public BigDecimal getTotal() {
+        return total;
+    }
 
     @Override
     public String toString() {

@@ -26,3 +26,8 @@ User stories
 4. Remove an order
 5. Export all data
 6. Quite
+
+
+- add error handling for enter state abbreviation for adding an order.
+- check that no part of my program relies of existience of an order only if there is an existance of a collection,
+as the collection might be empty due to an order being deleted so in reality no files exist for that day. Check display option for this.

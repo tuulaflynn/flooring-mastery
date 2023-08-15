@@ -15,7 +15,7 @@ public class OrderServiceImpl implements OrderService {
 
     OrderDao orderDao;
 
-    public OrderServiceImpl(){
+    public OrderServiceImpl() {
         orderDao = new OrderDaoImpl();
     }
 
@@ -30,8 +30,9 @@ public class OrderServiceImpl implements OrderService {
     }
 
     public boolean isDateFuture(String userDate) {
+        // Method returns true is userDate is in the future, and false otherwise.
         LocalDate todayLd = LocalDate.now();
-        LocalDate orderLd = LocalDate.now();
+        LocalDate orderLd;
         orderLd = LocalDate.parse(userDate, DateTimeFormatter.ofPattern("MMddyyyy"));
         Period future = todayLd.until(orderLd);
 
@@ -46,5 +47,26 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public boolean addOrder(String orderDate, OrderTo orderTo) {
         return orderDao.addOrder(orderDate, orderTo);
+    }
+
+    @Override
+    public int calculateOrderNumber() {
+        return orderDao.calculateOrderNumber();
+    }
+
+    @Override
+    public OrderTo fetchOrder(String orderDate, int orderNumber) {
+        return orderDao.fetchOrder(orderDate, orderNumber);
+    }
+
+
+    @Override
+    public String removeOrder(String orderDate, int orderNumber) {
+        return orderDao.removeOrder(orderDate, orderNumber);
+    }
+
+    @Override
+    public void exportToOrdersFolder() throws IOException {
+        orderDao.exportToOrdersFolder();
     }
 }
