@@ -21,23 +21,7 @@ public class OrderTo {
 
     private BigDecimal bigDecimal100 = new BigDecimal(100);     // Used in calculating tax field by diving the tax rate by 100.
 
-    public OrderTo(int orderNumber, String customerName, String state, BigDecimal taxRate, String productType,
-                   BigDecimal area, BigDecimal costPerSquareFoot, BigDecimal laborCostPerSquareFoot,
-                   BigDecimal materialCost, BigDecimal laborCost, BigDecimal tax, BigDecimal total) {
-        // Constructor for reading in the data from the files.
-        this.orderNumber = orderNumber;
-        this.customerName = customerName;
-        this.state = state;
-        this.taxRate = taxRate;
-        this.productType = productType;
-        this.area = area;
-        this.costPerSquareFoot = costPerSquareFoot;
-        this.laborCostPerSquareFoot = laborCostPerSquareFoot;
-        this.materialCost = materialCost;
-        this.laborCost = laborCost;
-        this.tax = tax;
-        this.total = total;
-    }
+
     public OrderTo(int orderNumber, String customerName, TaxTo taxTo, ProductTo productTo, BigDecimal area){
         // Constructor to make order objects via the program.
         this.orderNumber = orderNumber;
