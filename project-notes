@@ -31,3 +31,11 @@ User stories
 - add error handling for enter state abbreviation for adding an order.
 - check that no part of my program relies of existience of an order only if there is an existance of a collection,
 as the collection might be empty due to an order being deleted so in reality no files exist for that day. Check display option for this.
+
+Reelection on design
+--------------------
+Problems with having entities only as an interface:
+	- fields are public, so proper encapsulation is not achieved (all properties are public in an interface)
+	- multithreading would create problems, as there are more than one access to the database (
+	- for my purposes, I had to make my methods static to have them in the interface, this meant I couldn't unit test these methods (as they were static)
+	-
